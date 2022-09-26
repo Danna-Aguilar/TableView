@@ -27,13 +27,19 @@ class PeliculaController: UIViewController,
         return peliculas.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let celda =
-        tableView.dequeueReusableCell(withIdentifier: "celdaPelicula")
-        return celda!
+        let celda = tableView.dequeueReusableCell(withIdentifier: "celdaPelicula") as! CeldaPeliculasController
+        celda.lblDirector.text = peliculas[indexPath.row].director
+        celda.lblAño.text = peliculas[indexPath.row].año
+        celda.lblTitulo.text = peliculas[indexPath.row].titulo
+        return celda
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destino = segue.destination as! DetallesPeliculaController
+        destino.pelicula = peliculas[0]
     }
 
 }
