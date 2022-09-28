@@ -11,14 +11,19 @@ import UIKit
 class PeliculaController: UIViewController,
     UITableViewDelegate, UITableViewDataSource{
 
+    @IBOutlet weak var tvPeliculas: UITableView!
     var peliculas: [Pelicula] = []
+    //var personaje: [Personaje] = []
+    //var interprete: [Interprete] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
         peliculas.append(Pelicula(titulo: "Titanic", año: "1990", director: "James Camero", genero: "Drama"))
         peliculas.append(Pelicula(titulo: "Moana", año: "2016", director: "Henrick Claso", genero: "Accion"))
         peliculas.append(Pelicula(titulo: "One Day", año: "2011", director: "Federick Lasso", genero: "Suspenso"))
+        
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,7 +44,7 @@ class PeliculaController: UIViewController,
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destino = segue.destination as! DetallesPeliculaController
-        destino.pelicula = peliculas[0]
+        destino.pelicula = peliculas[tvPeliculas.indexPathForSelectedRow! .row]
     }
 
 }

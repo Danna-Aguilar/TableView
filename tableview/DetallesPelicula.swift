@@ -11,6 +11,8 @@ class DetallesPeliculaController: UIViewController {
     
     var pelicula : Pelicula?
     
+    @IBOutlet weak var lblDirector: UILabel!
+    @IBOutlet weak var lblAño: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,6 +20,8 @@ class DetallesPeliculaController: UIViewController {
         
         if pelicula != nil {
             self.title = pelicula?.titulo
+            lblDirector.text = pelicula?.año
+            lblAño.text = pelicula?.año
             
         }
     }
