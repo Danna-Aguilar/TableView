@@ -10,6 +10,5 @@ import UIKit
 class PersonajeController: UITableViewCell {
     
     @IBOutlet weak var lblNombre: UILabel!
-    
     @IBOutlet weak var lblActriz: UILabel!
 }

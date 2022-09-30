@@ -7,10 +7,11 @@
 //
 
 import UIKit
-class DetallesPeliculaController: UIViewController {
+class DetallesPeliculaController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var pelicula : Pelicula?
     
+    @IBOutlet weak var lblTvPersonajes: UITableView!
     @IBOutlet weak var lblDirector: UILabel!
     @IBOutlet weak var lblAño: UILabel!
     override func viewDidLoad() {
@@ -21,8 +22,30 @@ class DetallesPeliculaController: UIViewController {
         if pelicula != nil {
             self.title = pelicula?.titulo
             lblDirector.text = pelicula?.año
-            lblAño.text = pelicula?.año
+            lblAño.text = pelicula?.director
             
         }
+        
     }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return pelicula!.Personaje.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let celda = tableView.dequeueReusableCell(withIdentifier: "celdaPersonaje") as! PersonajeController
+        
+        celda.lblNombre.text = pelicula?.Personaje[indexPath.row].nombre
+        celda.lblActriz.text = pelicula?.Personaje[indexPath.row].actriz
+        
+        return celda
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 61
+    }
+    
 }
